@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">marvel-super-heroes-mvvm</string>
+    <string name="image_transition">imageTransition</string>
+</resources>
