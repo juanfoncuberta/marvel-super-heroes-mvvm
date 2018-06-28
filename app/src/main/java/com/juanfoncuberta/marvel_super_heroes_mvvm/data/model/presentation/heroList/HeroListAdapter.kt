@@ -14,7 +14,7 @@ import com.juanfoncuberta.marvel_super_heroes_mvvm.data.model.model.MarvelHeroDi
 import kotlinx.android.synthetic.main.item_hero.view.*
 
 
-class HeroListAdapter(view:View) :  ListAdapter<MarvelHero,HeroListAdapter.HeroListViewHolder>(MarvelHeroDiff()){
+class HeroListAdapter :  ListAdapter<MarvelHero,HeroListAdapter.HeroListViewHolder>(MarvelHeroDiff()){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HeroListViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_hero,parent,false)

@@ -43,7 +43,7 @@ class heroListActivity : AppCompatActivity() {
         heroListViewModel.marvelHeroesListState.observe(this,Observer{
             heroList->
             heroList?.let {
-                onHeroListLoaded(itgit)
+                onHeroListLoaded(it)
             }
 
         })
