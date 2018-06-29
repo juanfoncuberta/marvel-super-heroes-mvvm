@@ -25,6 +25,8 @@ class HeroListViewModel: BaseViewModel(){
         marvelHeroesRepository.getMarvelHeroesList()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe {  isLoadingState.postValue(true) }
+                .doOnTerminate{ isLoadingState.postValue(false)}
                 .subscribeBy (
                     onNext = {
                         marvelHeroesListState.value = it

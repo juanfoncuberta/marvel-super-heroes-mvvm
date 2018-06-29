@@ -56,6 +56,11 @@ class heroListActivity : AppCompatActivity() {
     private  fun showLoading(isLoading: Boolean){
         heroesListLoading.visibility = if(isLoading) View.VISIBLE else View.GONE
     }
+
+    override fun onResume(){
+        super.onResume()
+        heroListViewModel.loadMarvelHeroes()
+    }
 }
 
 
