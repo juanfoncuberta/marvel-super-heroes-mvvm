@@ -30,6 +30,7 @@ class heroListActivity : AppCompatActivity() {
     private  fun setUpViewModel(){
         heroListViewModel = ViewModelProviders.of(this).get(HeroListViewModel::class.java)
         bindEvents()
+        heroListViewModel.loadMarvelHeroes()
 
     }
 
@@ -57,10 +58,7 @@ class heroListActivity : AppCompatActivity() {
         heroesListLoading.visibility = if(isLoading) View.VISIBLE else View.GONE
     }
 
-    override fun onResume(){
-        super.onResume()
-        heroListViewModel.loadMarvelHeroes()
-    }
+
 }
 
 

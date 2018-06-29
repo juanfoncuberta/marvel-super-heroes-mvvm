@@ -13,8 +13,16 @@ import com.juanfoncuberta.marvel_super_heroes_mvvm.data.model.model.MarvelHero
 import com.juanfoncuberta.marvel_super_heroes_mvvm.data.model.model.MarvelHeroDiff
 import kotlinx.android.synthetic.main.item_hero.view.*
 
+// ListAdapter<MarvelHero,HeroListAdapter.HeroListViewHolder>(MarvelHeroDiff()
+class HeroListAdapter :  RecyclerView.Adapter<HeroListAdapter.HeroListViewHolder>(){
 
-class HeroListAdapter :  ListAdapter<MarvelHero,HeroListAdapter.HeroListViewHolder>(MarvelHeroDiff()){
+    private val items: MutableList<MarvelHero> = mutableListOf()
+    override fun getItemCount(): Int = items.size
+    fun submitList(items: List<MarvelHero>){
+        this.items.addAll(items)
+        notifyDataSetChanged()
+
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HeroListViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_hero,parent,false)
@@ -22,7 +30,7 @@ class HeroListAdapter :  ListAdapter<MarvelHero,HeroListAdapter.HeroListViewHold
     }
 
     override fun onBindViewHolder(holder: HeroListViewHolder, position: Int) {
-        holder.bind(getItem(position))
+        holder.bind(items[position])
     }
 
 
