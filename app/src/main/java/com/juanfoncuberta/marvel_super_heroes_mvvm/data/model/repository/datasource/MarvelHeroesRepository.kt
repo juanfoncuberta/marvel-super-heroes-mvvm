@@ -8,8 +8,14 @@ import java.util.concurrent.TimeUnit
 
 class MarvelHeroesRepository(private val fakeMarvelHeroesDataSource: FakeMarvelHeroesDataSource,private val fakeMarvelHeroesDataSource2: FakeMarvelHeroesDataSource2) {
 
-     fun getMarvelHeroesList(): Observable<List<MarvelHero>> =  fakeMarvelHeroesDataSource.getMarvelHeroesList()
+     fun getMarvelHeroesList(): Observable<List<MarvelHero>> =
+             fakeMarvelHeroesDataSource.getMarvelHeroesList()
                .mergeWith(fakeMarvelHeroesDataSource2.getMarvelHeroesList())
+
+
+     fun fetMarvelHeroDetail(heroId: Long): Observable<MarvelHero> =
+             fakeMarvelHeroesDataSource.getMarvelHeroDetail(heroId)
+                     .concatWith(fakeMarvelHeroesDataSource2.getMarvelHeroDetail(heroId))
 
 
 

@@ -6,5 +6,5 @@ import io.reactivex.Observable
 interface MarvelHeroesDataSource {
 
     fun getMarvelHeroesList(): Observable<List<MarvelHero>>
-    //fun getMarvelHeroDetail(heroId: Long): Observable<MarvelHero>
+    fun getMarvelHeroDetail(heroId: Long): Observable<MarvelHero>
 }

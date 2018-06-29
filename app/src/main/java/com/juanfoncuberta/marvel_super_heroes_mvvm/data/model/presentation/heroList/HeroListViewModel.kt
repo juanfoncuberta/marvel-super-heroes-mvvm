@@ -4,7 +4,9 @@ import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
 import android.support.v7.widget.DefaultItemAnimator
 import com.juanfoncuberta.marvel_super_heroes_mvvm.data.model.model.MarvelHero
+import com.juanfoncuberta.marvel_super_heroes_mvvm.data.model.presentation.heroList.serviceLocator.Inject
 import com.juanfoncuberta.marvel_super_heroes_mvvm.data.model.presentation.heroList.util.mvvm.BaseViewModel
+import com.juanfoncuberta.marvel_super_heroes_mvvm.data.model.presentation.heroList.util.mvvm.SettingsManager.Companion.PREF_FIRST_LOAD
 import com.juanfoncuberta.marvel_super_heroes_mvvm.data.model.repository.datasource.MarvelHeroesRepository
 import com.juanfoncuberta.marvel_super_heroes_mvvm.data.model.repository.datasource.datasource.FakeMarvelHeroesDataSource
 import com.juanfoncuberta.marvel_super_heroes_mvvm.data.model.repository.datasource.datasource.FakeMarvelHeroesDataSource2
@@ -15,7 +17,8 @@ import io.reactivex.schedulers.Schedulers
 
 class HeroListViewModel: BaseViewModel(){
 
-    //TODO mejorar dependencias (service locator)
+
+
     val marvelHeroesListState: MutableLiveData<List<MarvelHero>> = MutableLiveData()
     val isLoadingState: MutableLiveData<Boolean> = MutableLiveData()
     private val fakeMarvelHeroesDataSource = FakeMarvelHeroesDataSource()
@@ -35,6 +38,9 @@ class HeroListViewModel: BaseViewModel(){
                      },
                     onError= {
 
+                    },
+                    onComplete = {
+                            Inject.settingsManager.firstLoad = false
                     }
                 ).addTo(compositeDisposable)
 

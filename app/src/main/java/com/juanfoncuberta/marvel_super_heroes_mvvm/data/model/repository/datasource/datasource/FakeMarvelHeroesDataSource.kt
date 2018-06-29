@@ -4,7 +4,9 @@ import com.juanfoncuberta.marvel_super_heroes_mvvm.data.model.model.MarvelHero
 import io.reactivex.Observable
 
 class FakeMarvelHeroesDataSource: MarvelHeroesDataSource {
-
+    override fun getMarvelHeroDetail(heroId: Long): Observable<MarvelHero> {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
 
 
     override fun getMarvelHeroesList(): Observable<List<MarvelHero>> {
