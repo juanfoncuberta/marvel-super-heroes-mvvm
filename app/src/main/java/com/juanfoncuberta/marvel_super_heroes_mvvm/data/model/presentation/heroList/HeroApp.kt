@@ -8,6 +8,7 @@ import com.juanfoncuberta.marvel_super_heroes_mvvm.data.model.presentation.heroL
 class HeroApp: Application() {
     override fun onCreate() {
         super.onCreate()
+        Inject.initDatabase(this)
         Inject.settingsManager = SettingsManager(PreferenceManager.getDefaultSharedPreferences(this))
     }
 }
