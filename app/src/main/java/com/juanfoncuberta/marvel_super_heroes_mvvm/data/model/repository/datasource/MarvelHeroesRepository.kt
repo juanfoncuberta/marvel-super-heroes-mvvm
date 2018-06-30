@@ -11,7 +11,11 @@ import io.reactivex.Observable
 class MarvelHeroesRepository(private val apiDataSource: ApiDataSource,private val localDataSource: LocalDataSource) {
 
      fun getMarvelHeroesList(): Flowable<List<MarvelHero>> =
-             localDataSource.getMarvelHeroesList().mergeWith(apiDataSource.getMarvelHeroesList())
+             getHeroesFromDb().concatWith(getHeroesFromApi())
+
+     private fun getHeroesFromDb(): Flowable<List<MarvelHero>> = localDataSource.getMarvelHeroesList()
+     private  fun getHeroesFromApi() : Flowable<List<MarvelHero>> = apiDataSource.getMarvelHeroesList()
+             .doOnNext{localDataSource.saveHeroes(it)}
 
 
 }
