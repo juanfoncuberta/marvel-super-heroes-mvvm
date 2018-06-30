@@ -20,11 +20,10 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class heroListActivity : AppCompatActivity() {
     lateinit var heroListViewModel: HeroListViewModel
-    private val adapter = HeroListAdapter{
-            onHeroClicked(it)
-    }
+    private val adapter = HeroListAdapter{ onHeroClicked(it) }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         setContentView(R.layout.activity_main)
         setUpRecycler()
         setUpViewModel()
@@ -34,6 +33,7 @@ class heroListActivity : AppCompatActivity() {
         heroesListRecycler.layoutManager = LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false)
         heroesListRecycler.itemAnimator = DefaultItemAnimator()
         heroesListRecycler.adapter = adapter
+
     }
 
     private  fun setUpViewModel(){
@@ -50,7 +50,7 @@ class heroListActivity : AppCompatActivity() {
                 showLoading(it)
             }
         })
-        heroListViewModel.marvelHeroesListState.observe(this,Observer{
+       heroListViewModel.marvelHeroesListState.observe(this,Observer{
             heroList->
             heroList?.let {
                 onHeroListLoaded(it)
@@ -61,6 +61,7 @@ class heroListActivity : AppCompatActivity() {
 
     private  fun onHeroListLoaded(heroList: List<MarvelHero>){
         adapter.submitList(heroList)
+
     }
 
     private  fun showLoading(isLoading: Boolean){
@@ -68,7 +69,8 @@ class heroListActivity : AppCompatActivity() {
     }
 
     private fun onHeroClicked(marvelHero: MarvelHero){
-        Navigator.openHeroDetail(this,marvelHero.name)
+//        Navigator.openHeroDetail(this,marvelHero.name)
+        Navigator.openHeroDetail(this,marvelHero)
     }
 
 
