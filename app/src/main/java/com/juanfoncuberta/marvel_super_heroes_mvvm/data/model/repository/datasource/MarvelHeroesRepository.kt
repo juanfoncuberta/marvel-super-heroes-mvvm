@@ -1,5 +1,6 @@
 package com.juanfoncuberta.marvel_super_heroes_mvvm.data.model.repository.datasource
 
+import android.util.Log
 import com.juanfoncuberta.marvel_super_heroes_mvvm.data.model.model.MarvelHero
 import com.juanfoncuberta.marvel_super_heroes_mvvm.data.model.repository.datasource.datasource.FakeMarvelHeroesDataSource
 import com.juanfoncuberta.marvel_super_heroes_mvvm.data.model.repository.datasource.datasource.FakeMarvelHeroesDataSource2
@@ -13,9 +14,12 @@ class MarvelHeroesRepository(private val fakeMarvelHeroesDataSource: FakeMarvelH
                .mergeWith(fakeMarvelHeroesDataSource2.getMarvelHeroesList())
 
 
-     fun fetMarvelHeroDetail(heroId: Long): Observable<MarvelHero> =
-             fakeMarvelHeroesDataSource.getMarvelHeroDetail(heroId)
-                     .concatWith(fakeMarvelHeroesDataSource2.getMarvelHeroDetail(heroId))
+     fun getMarvelHeroDetail(heroName: String): Observable<MarvelHero> =
+         /*    fakeMarvelHeroesDataSource.getMarvelHeroDetail(heroName)
+                     .concatWith(fakeMarvelHeroesDataSource2.getMarvelHeroDetail(heroName))*/
+
+             fakeMarvelHeroesDataSource.getMarvelHeroDetail(heroName)
+                    .switchIfEmpty(fakeMarvelHeroesDataSource2.getMarvelHeroDetail(heroName))
 
 
 

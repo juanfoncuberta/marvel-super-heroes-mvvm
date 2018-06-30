@@ -3,6 +3,7 @@ package com.juanfoncuberta.marvel_super_heroes_mvvm.data.model.presentation.hero
 
 import android.support.v7.recyclerview.extensions.ListAdapter
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,8 +14,8 @@ import com.juanfoncuberta.marvel_super_heroes_mvvm.data.model.model.MarvelHero
 import com.juanfoncuberta.marvel_super_heroes_mvvm.data.model.model.MarvelHeroDiff
 import kotlinx.android.synthetic.main.item_hero.view.*
 
-// ListAdapter<MarvelHero,HeroListAdapter.HeroListViewHolder>(MarvelHeroDiff()
-class HeroListAdapter :  RecyclerView.Adapter<HeroListAdapter.HeroListViewHolder>(){
+typealias  onUserClick = (marvelHero: MarvelHero)-> Unit
+class HeroListAdapter(val onUserClick: onUserClick):  RecyclerView.Adapter<HeroListAdapter.HeroListViewHolder>(){
 
     private val items: MutableList<MarvelHero> = mutableListOf()
     override fun getItemCount(): Int = items.size
@@ -42,6 +43,11 @@ class HeroListAdapter :  RecyclerView.Adapter<HeroListAdapter.HeroListViewHolder
                 Glide.with(heroImage)
                         .load(marvelHero.photoUrl)
                         .into(heroImage)
+            }
+
+            itemView.setOnClickListener {
+
+                    onUserClick(marvelHero)
             }
         }
 
