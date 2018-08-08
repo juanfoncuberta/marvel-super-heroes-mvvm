@@ -52,8 +52,12 @@ class HeroDetailActivity: AppCompatActivity(){
         })
     }*/
     private  fun onHeroLoaded(marvelHero: MarvelHero){
-        Log.d("HeroDetailActivity",marvelHero.name)
+        Log.d("HeroDetailActivity",marvelHero.toString())
         heroDetailName.text = marvelHero.name
+        heroDetailRealName.text = marvelHero.realName
+        heroDetailHeight.text = marvelHero.height
+        heroDetailAbilities.text = marvelHero.abilities
+        heroDetailPower.text = marvelHero.power
         Glide.with(this)
                 .load(marvelHero.photoUrl)
                 .into(heroDetailImage)

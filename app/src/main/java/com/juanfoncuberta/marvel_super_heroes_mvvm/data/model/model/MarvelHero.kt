@@ -11,11 +11,11 @@ import kotlinx.android.parcel.Parcelize
 data class MarvelHero(
         @PrimaryKey(autoGenerate = true)
         val id:Long,
-        val name: String = "",
-        val photoUrl: String = "",
-        val realName: String = "",
-        val height: String = "",
-        val power: String = "",
-        val abilities: String = "",
-        val groups: String = ""
+        val name: String,
+        val photoUrl: String,
+        val realName: String,
+        val height: String,
+        val power: String,
+        val abilities: String,
+        val groups: String
 ):Parcelable
