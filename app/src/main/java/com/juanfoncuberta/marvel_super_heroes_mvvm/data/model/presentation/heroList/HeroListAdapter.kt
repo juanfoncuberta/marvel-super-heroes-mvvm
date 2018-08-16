@@ -15,7 +15,9 @@ import com.juanfoncuberta.marvel_super_heroes_mvvm.data.model.model.MarvelHeroDi
 import kotlinx.android.synthetic.main.item_hero.view.*
 
 typealias  onUserClick = (marvelHero: MarvelHero)-> Unit
-class HeroListAdapter(val onUserClick: onUserClick):  RecyclerView.Adapter<HeroListAdapter.HeroListViewHolder>(){
+typealias favouriteClick = (marvelHero:MarvelHero)->Unit
+
+class HeroListAdapter(val onUserClick: onUserClick,val favouriteClick: favouriteClick):  RecyclerView.Adapter<HeroListAdapter.HeroListViewHolder>(){
 
     private val items: MutableList<MarvelHero> = mutableListOf()
     override fun getItemCount(): Int = items.size
@@ -40,6 +42,8 @@ class HeroListAdapter(val onUserClick: onUserClick):  RecyclerView.Adapter<HeroL
         fun bind(marvelHero: MarvelHero){
             with(itemView){
                 heroTitle.text = marvelHero.name
+                heroFavouriteIcon.setImageResource(favouriteIcon(marvelHero.favourite))
+                heroFavouriteIcon.setOnClickListener { favouriteClick(changeFavouriteState(marvelHero)) }
                 Glide.with(heroImage)
                         .load(marvelHero.photoUrl)
                         .into(heroImage)
@@ -64,6 +68,17 @@ class HeroListAdapter(val onUserClick: onUserClick):  RecyclerView.Adapter<HeroL
                 }
             }
         }*/
+
+    private fun favouriteIcon(favourite:Boolean):Int{
+        if(favourite){
+            return R.drawable.favorite_full
+        }
+        return R.drawable.favorite_empty
+    }
+    private fun changeFavouriteState(hero: MarvelHero): MarvelHero {
+        hero.favourite = !hero.favourite
+        return hero
+    }
 
 
 }

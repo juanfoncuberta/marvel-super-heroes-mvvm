@@ -26,6 +26,14 @@
         android:scaleType="centerCrop"
         android:transitionName="@string/image_transition"
         tools:targetApi="lollipop" />
+    <ImageView
+        android:id="@+id/heroFavouriteIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_gravity="right |top" />
     <TextView
         android:id="@+id/heroTitle"
         android:layout_width="match_parent"

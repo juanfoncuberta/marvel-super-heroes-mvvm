@@ -6,6 +6,7 @@ import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.DefaultItemAnimator
+import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
 import android.view.View
@@ -20,7 +21,8 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class heroListActivity : AppCompatActivity() {
     lateinit var heroListViewModel: HeroListViewModel
-    private val adapter = HeroListAdapter{ onHeroClicked(it) }
+    lateinit var adapter: HeroListAdapter
+  //  private val adapter = HeroListAdapter{ onHeroClicked(it);updateFavouriteHero(it)}
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -30,7 +32,17 @@ class heroListActivity : AppCompatActivity() {
     }
 
     private fun setUpRecycler(){
-        heroesListRecycler.layoutManager = LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false)
+        adapter = HeroListAdapter(
+                {hero ->
+                    onHeroClicked(hero)
+                },
+                {
+                    hero ->
+                        updateFavouriteHero(hero)
+                }
+
+        )
+        heroesListRecycler.layoutManager = GridLayoutManager(this, 2, GridLayoutManager.VERTICAL, false)
         heroesListRecycler.itemAnimator = DefaultItemAnimator()
         heroesListRecycler.adapter = adapter
 
@@ -69,8 +81,11 @@ class heroListActivity : AppCompatActivity() {
     }
 
     private fun onHeroClicked(marvelHero: MarvelHero){
-//        Navigator.openHeroDetail(this,marvelHero.name)
         Navigator.openHeroDetail(this,marvelHero)
+    }
+
+    private fun updateFavouriteHero(marvelHero: MarvelHero){
+        heroListViewModel.updateFavourite(marvelHero)
     }
 
 

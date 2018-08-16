@@ -43,4 +43,19 @@ class HeroListViewModel: BaseViewModel(){
 
     }
 
+    fun updateFavourite(marvelHero: MarvelHero){
+        Inject.marvelHeroesRepository.updateMarvelHero(marvelHero)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeBy(
+                        onNext = {
+                            marvelHeroesListState.value = marvelHeroesListState.value
+                        },
+                        onError = {
+
+                        }
+                )
+                .addTo(compositeDisposable)
+    }
+
 }

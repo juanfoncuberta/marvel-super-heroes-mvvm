@@ -11,7 +11,8 @@ class MarvelHeroMapper: Mapper<Hero,MarvelHero> {
             input.height,
             input.power,
             input.abilities,
-            input.groups)
+            input.groups,
+            input.favourite)
 
 
 

@@ -25,7 +25,6 @@ object Inject {
     val marvelHeroMapper = MarvelHeroMapper()
     val heroService = retrofit.create(HeroService::class.java)
     lateinit var  settingsManager: SettingsManager
-    val fakeMarvelHeroesDataSource = FakeMarvelHeroesDataSource()
     val apiDataSource = ApiDataSource(heroService,marvelHeroMapper)
     lateinit var localDataSource: LocalDataSource
     lateinit var marvelHeroesRepository:  MarvelHeroesRepository

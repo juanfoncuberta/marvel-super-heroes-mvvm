@@ -9,4 +9,4 @@ abstract class HeroDatabase: RoomDatabase() {
 
     abstract fun  getHeroDao(): HeroDao
 
-    }
+}

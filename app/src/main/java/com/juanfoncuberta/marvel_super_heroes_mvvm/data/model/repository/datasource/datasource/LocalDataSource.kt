@@ -24,6 +24,13 @@ class LocalDataSource(val heroDatabase: HeroDatabase): MarvelHeroesDataSource {
                 .subscribe()
 
     }
+    fun updateHero(marvelHero: MarvelHero): Observable<Int> =
+        Observable.create {
+            heroDatabase
+                    .getHeroDao()
+                    .updateHero(marvelHero)
+        }
+
 
 
 
