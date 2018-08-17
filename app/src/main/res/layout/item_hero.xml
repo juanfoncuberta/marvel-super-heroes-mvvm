@@ -8,7 +8,9 @@
     android:clickable="true"
     android:focusable="true"
     android:foreground="?attr/selectableItemBackground">
-
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 <!--TODO  adaptar a vistar marvel heroes-->
 <!--    <com.costular.marvelheroesmvvm.presentation.util.SquareImageView
         android:id="@+id/heroImage"
@@ -28,12 +30,13 @@
         tools:targetApi="lollipop" />
     <ImageView
         android:id="@+id/heroFavouriteIcon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:layout_marginRight="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginTop="16dp"
         android:layout_gravity="right |top" />
+    </FrameLayout>
     <TextView
         android:id="@+id/heroTitle"
         android:layout_width="match_parent"

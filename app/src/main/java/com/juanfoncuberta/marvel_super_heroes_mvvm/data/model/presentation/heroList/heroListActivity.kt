@@ -42,7 +42,7 @@ class heroListActivity : AppCompatActivity() {
                 }
 
         )
-        heroesListRecycler.layoutManager = GridLayoutManager(this, 2, GridLayoutManager.VERTICAL, false)
+        heroesListRecycler.layoutManager =GridLayoutManager(this, 2, GridLayoutManager.VERTICAL, false)
         heroesListRecycler.itemAnimator = DefaultItemAnimator()
         heroesListRecycler.adapter = adapter
 
@@ -85,6 +85,7 @@ class heroListActivity : AppCompatActivity() {
     }
 
     private fun updateFavouriteHero(marvelHero: MarvelHero){
+       // Log.d("HEROESS",marvelHero.name.toString())
         heroListViewModel.updateFavourite(marvelHero)
     }
 

@@ -1,17 +1,20 @@
 package com.juanfoncuberta.marvel_super_heroes_mvvm.data.model.presentation.heroList
 
 
-import android.support.v7.recyclerview.extensions.ListAdapter
+
+import android.graphics.Bitmap
 import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.DataSource
+import com.bumptech.glide.load.engine.GlideException
+import com.bumptech.glide.request.RequestListener
+import com.bumptech.glide.request.target.Target
 import com.juanfoncuberta.marvel_super_heroes_mvvm.R
-
 import com.juanfoncuberta.marvel_super_heroes_mvvm.data.model.model.MarvelHero
-import com.juanfoncuberta.marvel_super_heroes_mvvm.data.model.model.MarvelHeroDiff
 import kotlinx.android.synthetic.main.item_hero.view.*
 
 typealias  onUserClick = (marvelHero: MarvelHero)-> Unit
@@ -21,6 +24,7 @@ class HeroListAdapter(val onUserClick: onUserClick,val favouriteClick: favourite
 
     private val items: MutableList<MarvelHero> = mutableListOf()
     override fun getItemCount(): Int = items.size
+
     fun submitList(items: List<MarvelHero>){
         this.items.addAll(items)
         notifyDataSetChanged()
@@ -32,34 +36,36 @@ class HeroListAdapter(val onUserClick: onUserClick,val favouriteClick: favourite
         return HeroListViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: HeroListViewHolder, position: Int) {
-        holder.bind(items[position])
-    }
-
+    override fun onBindViewHolder(holder: HeroListViewHolder, position: Int) = holder.bind(items[position])
 
     inner class HeroListViewHolder(view:View): RecyclerView.ViewHolder(view){
 
-        fun bind(marvelHero: MarvelHero){
+        fun bind(marvelHero: MarvelHero) =
+
             with(itemView){
+                kotlin.with(itemView){
+
                 heroTitle.text = marvelHero.name
-                heroFavouriteIcon.setImageResource(favouriteIcon(marvelHero.favourite))
-                heroFavouriteIcon.setOnClickListener { favouriteClick(changeFavouriteState(marvelHero)) }
+              heroFavouriteIcon.setImageResource(favouriteIcon(marvelHero.favourite))
+               heroFavouriteIcon.setOnClickListener { favouriteClick(changeFavouriteState(marvelHero)) }
                 Glide.with(heroImage)
                         .load(marvelHero.photoUrl)
                         .into(heroImage)
+
             }
 
             itemView.setOnClickListener {
 
                     onUserClick(marvelHero)
             }
-        }
+            }
 
-    }
 
-   /*     fun loadColorsFromBitmap(bitmap: Bitmap) {
+
+        fun loadColorsFromBitmap(bitmap: Bitmap) {
             with(itemView) {
-                Palette.from(bitmap).generate { palette ->
+                android.support.v7.graphics.Palette.from(bitmap).generate {
+                    palette ->
                     val vibrant = palette.vibrantSwatch
                     vibrant?.let {
                         heroTitle.setBackgroundColor(vibrant.rgb)
@@ -67,19 +73,19 @@ class HeroListAdapter(val onUserClick: onUserClick,val favouriteClick: favourite
                     }
                 }
             }
-        }*/
-
-    private fun favouriteIcon(favourite:Boolean):Int{
-        if(favourite){
-            return R.drawable.favorite_full
         }
-        return R.drawable.favorite_empty
-    }
-    private fun changeFavouriteState(hero: MarvelHero): MarvelHero {
-        hero.favourite = !hero.favourite
-        return hero
-    }
 
+        private fun favouriteIcon(favourite:Boolean):Int{
+            if(favourite){
+                return R.drawable.favorite_full
+            }
+            return R.drawable.favorite_empty
+        }
+        private fun changeFavouriteState(hero: MarvelHero): MarvelHero {
+            hero.favourite = !hero.favourite
+            return hero
+        }
+    }
 
 }
 
