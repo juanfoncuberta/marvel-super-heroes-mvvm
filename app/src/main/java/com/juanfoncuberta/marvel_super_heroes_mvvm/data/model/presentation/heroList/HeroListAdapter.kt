@@ -59,21 +59,6 @@ class HeroListAdapter(val onUserClick: onUserClick,val favouriteClick: favourite
 
                     onUserClick(marvelHero)
             }
-            }
-
-
-
-        fun loadColorsFromBitmap(bitmap: Bitmap) {
-            with(itemView) {
-                android.support.v7.graphics.Palette.from(bitmap).generate {
-                    palette ->
-                    val vibrant = palette.vibrantSwatch
-                    vibrant?.let {
-                        heroTitle.setBackgroundColor(vibrant.rgb)
-                        heroTitle.setTextColor(vibrant.bodyTextColor)
-                    }
-                }
-            }
         }
 
         private fun favouriteIcon(favourite:Boolean):Int{

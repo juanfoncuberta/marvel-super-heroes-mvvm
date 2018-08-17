@@ -6,6 +6,6 @@ import retrofit2.http.GET
 
 interface HeroService {
 
-    @GET("bins/bvyob/")
+    @GET("bins/jov4y/")
     fun getHeroes():Flowable<MarvelHeroApiResponse>
 }

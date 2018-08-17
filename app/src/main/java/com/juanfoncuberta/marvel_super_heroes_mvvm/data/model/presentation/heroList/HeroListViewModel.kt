@@ -14,14 +14,8 @@ import io.reactivex.schedulers.Schedulers
 
 class HeroListViewModel: BaseViewModel(){
 
-
-
     val marvelHeroesListState: MutableLiveData<List<MarvelHero>> = MutableLiveData()
     val isLoadingState: MutableLiveData<Boolean> = MutableLiveData()
- /*   private val fakeMarvelHeroesDataSource = FakeMarvelHeroesDataSource()
-    private val apiDataSource = ApiDataSource()
-    private val marvelHeroesRepository =  MarvelHeroesRepository(fakeMarvelHeroesDataSource,apiDataSource)
-*/
 
     fun loadMarvelHeroes() {
         Inject.marvelHeroesRepository.getMarvelHeroesList()
@@ -44,13 +38,13 @@ class HeroListViewModel: BaseViewModel(){
     }
 
     fun updateFavourite(marvelHero: MarvelHero){
-        Inject.marvelHeroesRepository.updateMarvelHero(marvelHero)
+        Inject.marvelHeroesRepository
+                .updateMarvelHero(marvelHero)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeBy(
                         onNext = {
-                            marvelHeroesListState.value = marvelHeroesListState.value
-                        },
+                            marvelHeroesListState.value = marvelHeroesListState.value                        },
                         onError = {
 
                         }

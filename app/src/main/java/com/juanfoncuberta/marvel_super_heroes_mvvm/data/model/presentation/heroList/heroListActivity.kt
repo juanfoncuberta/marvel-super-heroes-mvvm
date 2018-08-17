@@ -22,7 +22,6 @@ import kotlinx.android.synthetic.main.activity_main.*
 class heroListActivity : AppCompatActivity() {
     lateinit var heroListViewModel: HeroListViewModel
     lateinit var adapter: HeroListAdapter
-  //  private val adapter = HeroListAdapter{ onHeroClicked(it);updateFavouriteHero(it)}
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -86,7 +85,7 @@ class heroListActivity : AppCompatActivity() {
     }
 
     private fun updateFavouriteHero(marvelHero: MarvelHero){
-       bindEvents()
+        bindEvents()
         heroListViewModel.updateFavourite(marvelHero)
     }
 

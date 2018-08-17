@@ -8,9 +8,9 @@ import io.reactivex.Flowable
 
 class ApiDataSource(private  val heroService: HeroService,
                     private val marvelHeroMapper: MarvelHeroMapper): MarvelHeroesDataSource {
-    override fun getMarvelHeroesList(): Flowable<List<MarvelHero>> {
-        return heroService.getHeroes()
+    override fun getMarvelHeroesList(): Flowable<List<MarvelHero>>  =
+            heroService.getHeroes()
                 .map { it.superheroes }
                 .map { marvelHeroMapper.transformList(it) }
-    }
+
 }

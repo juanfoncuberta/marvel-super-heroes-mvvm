@@ -10,8 +10,11 @@ abstract class HeroDao {
     @Query("SELECT  * FROM MarvelHero")
     abstract fun getAllHeroes(): Maybe<List<MarvelHero>>
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    abstract  fun insertAll(heroes: List<MarvelHero>)
+    @Query("SELECT * FROM MarvelHero WHERE id = :heroId")
+    abstract fun getSuperhero(heroId: String): Maybe<MarvelHero>
+
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    abstract fun insertAll(SuperheroesList: List<MarvelHero>)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     abstract fun insertHero(hero: MarvelHero)

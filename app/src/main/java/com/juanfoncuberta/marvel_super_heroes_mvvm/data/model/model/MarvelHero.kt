@@ -9,7 +9,7 @@ import kotlinx.android.parcel.Parcelize
 @Entity(tableName = "MarvelHero")
 @Parcelize
 data class MarvelHero(
-        @PrimaryKey(autoGenerate = true)
+        @PrimaryKey()
         val id: Long,
         val name: String,
         val photoUrl: String,
