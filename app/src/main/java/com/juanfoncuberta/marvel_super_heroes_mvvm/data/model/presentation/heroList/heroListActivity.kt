@@ -72,7 +72,8 @@ class heroListActivity : AppCompatActivity() {
     }
 
     private  fun onHeroListLoaded(heroList: List<MarvelHero>){
-        adapter.submitList(heroList)
+       adapter.submitList(heroList)
+
 
     }
 
@@ -85,7 +86,7 @@ class heroListActivity : AppCompatActivity() {
     }
 
     private fun updateFavouriteHero(marvelHero: MarvelHero){
-       // Log.d("HEROESS",marvelHero.name.toString())
+       bindEvents()
         heroListViewModel.updateFavourite(marvelHero)
     }
 

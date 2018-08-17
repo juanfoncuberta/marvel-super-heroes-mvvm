@@ -10,7 +10,7 @@ import kotlinx.android.parcel.Parcelize
 @Parcelize
 data class MarvelHero(
         @PrimaryKey(autoGenerate = true)
-        val id:Long,
+        val id: Long,
         val name: String,
         val photoUrl: String,
         val realName: String,

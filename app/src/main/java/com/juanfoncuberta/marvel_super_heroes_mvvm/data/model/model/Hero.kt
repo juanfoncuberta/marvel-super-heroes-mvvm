@@ -2,6 +2,7 @@ package com.juanfoncuberta.marvel_super_heroes_mvvm.data.model.model
 
 
 data class Hero (
+    val id: Long,
     val name: String,
     val photo: String,
     val realName: String = "",

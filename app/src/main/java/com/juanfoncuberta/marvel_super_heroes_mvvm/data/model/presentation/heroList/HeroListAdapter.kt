@@ -26,6 +26,7 @@ class HeroListAdapter(val onUserClick: onUserClick,val favouriteClick: favourite
     override fun getItemCount(): Int = items.size
 
     fun submitList(items: List<MarvelHero>){
+       this.items.clear()
         this.items.addAll(items)
         notifyDataSetChanged()
 
